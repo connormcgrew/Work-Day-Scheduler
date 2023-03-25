@@ -16,6 +16,20 @@ $(function () {
       $(this).addClass("future");
     }
   });
+  $(".saveBtn").on("click", function () {
+    var time = $(this).parent().attr("id");
+    var description = $(this).siblings(".description").val();
+
+    localStorage.setItem(time, description);
+  });
+  $(".time-block").each(function () {
+    var time = $(this).attr("id");
+    var description = localStorage.getItem(time);
+
+    if (description !== null) {
+      $(this).children(".description").val(description);
+    }
+  });
 });
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
